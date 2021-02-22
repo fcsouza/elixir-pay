@@ -15,5 +15,5 @@ defmodule Elixirpay.Numbers do
     {:ok, %{result: result}}
   end
 
-  defp handle_file({:error, _reason}), do: {:error, "Invalid File"}
+  defp handle_file({:error, _reason}), do: {:error, %{message: "Invalid File"}}
 end
