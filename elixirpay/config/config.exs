@@ -10,6 +10,10 @@ use Mix.Config
 config :elixirpay,
   ecto_repos: [Elixirpay.Repo]
 
+config :elixirpay, Elixirpay.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :elixirpay, ElixirpayWeb.Endpoint,
   url: [host: "localhost"],
@@ -17,6 +21,8 @@ config :elixirpay, ElixirpayWeb.Endpoint,
   render_errors: [view: ElixirpayWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Elixirpay.PubSub,
   live_view: [signing_salt: "uoJ1N4lT"]
+
+
 
 # Configures Elixir's Logger
 config :logger, :console,
