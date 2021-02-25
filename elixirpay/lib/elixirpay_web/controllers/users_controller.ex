@@ -1,24 +1,27 @@
-defmodule ElixirpayWeb.UsersController do
-  use ElixirpayWeb, :controller
+defmodule Elixirpay.UsersController do
+  use Elixirpay, :controller
 
   alias Elixirpay.User
 
+  alias Elixirpay.User
+
+  action_fallback Elixirpay.FallbackController
+
   def create(conn, params) do
-    params
-    |> Elixirpay.create_user()
-    |> handle_response(conn)
+    with {:ok, %User{} = user}  <- Rocketpay.create_user(params) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", %{user: user})
+    end
   end
 
-  defp handle_response({:ok, %User{} = user}, conn) do
-    conn
-    |> put_status(:created)
-    |> render("create.json", user: user)
+  def list(conn, _params) do
+    with users  <- Rocketpay.list_user() do
+      conn
+      |> put_status(:ok)
+      |> render("list.json", %{users: users})
+    end
+
   end
 
-  defp handle_response({:error, result}, conn) do
-    conn
-    |> put_status(:bad_request)
-    |> put_view(ElixirpayWeb.ErrorView)
-    |> render("400.json", result: result)
-  end
 end
