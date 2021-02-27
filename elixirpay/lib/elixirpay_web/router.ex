@@ -12,6 +12,9 @@ defmodule ElixirpayWeb.Router do
 
     post "/users", UsersController, :create
 
+    post "/accounts/:id/withdraw", AccountsController, :withdraw
+    post "/accounts/:id/deposit", AccountsController, :deposit
+
   end
 
   # Enables LiveDashboard only for development
