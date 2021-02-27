@@ -1,11 +1,11 @@
-defmodule Elixirpay.UsersController do
-  use Elixirpay, :controller
+defmodule ElixirpayWeb.UsersController do
+  use ElixirpayWeb, :controller
 
   alias Elixirpay.User
 
   alias Elixirpay.User
 
-  action_fallback Elixirpay.FallbackController
+  action_fallback ElixirpayWeb.FallbackController
 
   def create(conn, params) do
     with {:ok, %User{} = user}  <- Elixirpay.create_user(params) do
