@@ -1,4 +1,4 @@
-defmodule ElixirpayWeb.AccountController do
+defmodule ElixirpayWeb.AccountsController do
   use ElixirpayWeb, :controller
 
   alias Elixirpay.{ Account}
