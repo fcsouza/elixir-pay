@@ -1,6 +1,6 @@
 defmodule Elixirpay.Users.Create do
-  alias Elixirpay.{Repo, User, Account}
   alias Ecto.Multi
+  alias Elixirpay.{Account, Repo, User}
 
   def call(params) do
     Multi.new()
@@ -8,8 +8,9 @@ defmodule Elixirpay.Users.Create do
     |> Multi.run(:create_account, fn repo, %{create_user: user} ->
       insert_account(repo, user)
     end)
-    |> Multi.run(:preload_data, fn repo, %{create_user: user} -> preload_data(repo, user)
-  end)
+    |> Multi.run(:preload_data, fn repo, %{create_user: user} ->
+      preload_data(repo, user)
+    end)
     |> run_transaction()
   end
 
@@ -19,13 +20,14 @@ defmodule Elixirpay.Users.Create do
     |> repo.insert()
   end
 
-  defp preload_data(repo, user) do
-    {:ok, repo.preload(user, :account)}
-  end
-
   defp account_changeset(user_id) do
     params = %{user_id: user_id, balance: "0.00"}
+
     Account.changeset(params)
+  end
+
+  defp preload_data(repo, user) do
+    {:ok, repo.preload(user, :account)}
   end
 
   defp run_transaction(multi) do

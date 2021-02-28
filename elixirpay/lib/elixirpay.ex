@@ -2,7 +2,7 @@ defmodule Elixirpay do
   alias Elixirpay.Users.Create, as: UserCreate
   alias Elixirpay.Users.List, as: UserList
 
-  alias Rocketpay.Accounts.{Deposit, Transaction, Withdraw}
+  alias Elixirpay.Accounts.{Deposit, Transaction, Withdraw}
 
   defdelegate create_user(params), to: UserCreate, as: :call
 

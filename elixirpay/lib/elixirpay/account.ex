@@ -1,6 +1,7 @@
 defmodule Elixirpay.Account do
   use Ecto.Schema
   import Ecto.Changeset
+
   alias Elixirpay.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -21,6 +22,4 @@ defmodule Elixirpay.Account do
     |> validate_required(@required_params)
     |> check_constraint(:balance, name: :balance_must_be_positive_or_zero)
   end
-
-
 end
