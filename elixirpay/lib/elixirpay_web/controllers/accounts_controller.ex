@@ -2,7 +2,7 @@ defmodule ElixirpayWeb.AccountsController do
   use ElixirpayWeb, :controller
 
   alias Elixirpay.Account
-  alias Elixirpay.Account.Transactions.Response, as: TransactionResponse
+  alias Elixirpay.Accounts.Transactions.Response, as: TransactionResponse
 
   action_fallback ElixirpayWeb.FallbackController
 
