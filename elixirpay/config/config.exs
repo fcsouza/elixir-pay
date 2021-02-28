@@ -22,7 +22,9 @@ config :elixirpay, ElixirpayWeb.Endpoint,
   pubsub_server: Elixirpay.PubSub,
   live_view: [signing_salt: "uoJ1N4lT"]
 
-
+config :elixirpay, :basic_auth,
+  username: "admin",
+  password: "admin123"
 
 # Configures Elixir's Logger
 config :logger, :console,
